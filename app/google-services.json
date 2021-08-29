@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "529065903137",
+    "project_id": "ufbsever",
+    "storage_bucket": "ufbsever.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529065903137:android:2fb4efa550a0d5c7e44f60",
+        "android_client_info": {
+          "package_name": "com.mrsoftit.ufbadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529065903137-8mv9gkgilgnggorvetihrmukrfl1378r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mrsoftit.ufbadmin",
+            "certificate_hash": "8faad8ad95bc17fb62e5e9ec8162f9b83e22bffe"
+          }
+        },
+        {
+          "client_id": "529065903137-gclu3ufu0kpi2gvug04tuvf5fqqitv2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJr55r3DLqf8lSL-j1KUbEyS0qhTvjup0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529065903137-gclu3ufu0kpi2gvug04tuvf5fqqitv2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

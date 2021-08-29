@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mrsoftit.ufbadmin">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UfbAdmin">
+        <activity android:name=".activity.NotisActivity"></activity>
+        <activity android:name=".activity.SliderActivity" />
+        <activity android:name=".activity.CategoryAddActivity" />
+        <activity android:name=".activity.VideoAddActivity" />
+        <activity android:name=".activity.TaskActivity" />
+        <activity android:name=".activity.UserListActivity" />
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
