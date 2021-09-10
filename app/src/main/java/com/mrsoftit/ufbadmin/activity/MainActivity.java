@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "uss", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,UserListActivity.class));
             }
         });
         task.setOnClickListener(new View.OnClickListener() {

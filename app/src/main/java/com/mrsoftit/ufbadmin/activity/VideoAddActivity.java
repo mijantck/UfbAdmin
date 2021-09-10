@@ -81,6 +81,10 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
     CollectionReference youtubeInfoAdd;
 
     String myString = "Select Category";
+    String myStringnewa = "news";
+    String myStringfun = "fun";
+    String myStringsong = "song";
+
     LinearLayout videoInfoLayout;
      String videoCategory;
 
@@ -100,6 +104,9 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
         addVideoButton = findViewById(R.id.addVideoButton);
 
         spineerData.add(myString);
+        spineerData.add(myStringnewa);
+        spineerData.add(myStringfun);
+        spineerData.add(myStringsong);
 
         spin.setOnItemSelectedListener(this);
         db.collection("category")

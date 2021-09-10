@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bakgrund_color"
     tools:context=".activity.MainActivity">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/userList"
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -36,9 +38,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/lavender_blossom"
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/team"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
                             </LinearLayout>
 
                             <TextView
@@ -72,9 +78,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Hawaiian_Breeze"
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/to_do_list"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
                             </LinearLayout>
 
                             <TextView
@@ -114,9 +124,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Purple_Anemone"
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/video_marketing"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
                             </LinearLayout>
 
                             <TextView
@@ -145,14 +159,20 @@
                         app:cardCornerRadius="5dp">
 
                         <LinearLayout
+
                             android:id="@+id/categoryAdd"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Blue_Dacnis"
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/category"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
+
                             </LinearLayout>
 
                             <TextView
@@ -192,9 +212,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Beyond_the_Clouds"
+                                android:gravity="center"
+                                android:layout_gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/slider"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
+
                             </LinearLayout>
 
                             <TextView
@@ -228,9 +254,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Shy_Moment"
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+
+                                <ImageView
+                                    android:src="@drawable/ads"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
                             </LinearLayout>
 
                             <TextView
@@ -271,9 +302,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Perano"
+                               android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/cashless_payment"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
                             </LinearLayout>
 
                             <TextView
@@ -308,9 +343,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Skydiver"
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+
+                                <ImageView
+                                    android:src="@drawable/credit_card"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
+
                             </LinearLayout>
 
                             <TextView
@@ -351,9 +392,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Mint_Macaron"
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/advertising"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
                             </LinearLayout>
 
                             <TextView
@@ -388,9 +433,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-                                android:background="@color/Hawaiian_Breeze"
+
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/loudspeaker"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
                             </LinearLayout>
 
                             <TextView
