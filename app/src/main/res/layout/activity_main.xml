@@ -433,7 +433,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <LinearLayout
-
                                 android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp">
@@ -456,6 +455,55 @@
 
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:weightSum="10"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+                <LinearLayout
+                    android:id="@+id/socialLink"
+                    android:layout_weight="5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:elevation="10dp"
+                        app:cardCornerRadius="5dp">
+
+                        <LinearLayout
+
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <LinearLayout
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp">
+                                <ImageView
+                                    android:src="@drawable/social_media"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"/>
+                            </LinearLayout>
+
+                            <TextView
+                                android:textColor="@color/Mint_Macaron"
+                                android:textSize="18dp"
+                                android:gravity="center"
+                                android:textStyle="bold"
+                                android:text="Promotion "
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
 
             </LinearLayout>
 

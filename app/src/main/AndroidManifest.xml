@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mrsoftit.ufbadmin">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -10,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UfbAdmin">
-
-        <activity android:name=".activity.NotisActivity"></activity>
+        <activity android:name=".activity.SocialLinkActivity"></activity>
+        <activity android:name=".activity.NotisActivity" />
         <activity android:name=".activity.SliderActivity" />
         <activity android:name=".activity.CategoryAddActivity" />
         <activity android:name=".activity.VideoAddActivity" />

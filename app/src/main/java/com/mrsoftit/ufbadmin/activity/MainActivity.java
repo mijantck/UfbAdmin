@@ -43,28 +43,27 @@ public class MainActivity extends AppCompatActivity {
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,UserListActivity.class));
+                startActivity(new Intent(MainActivity.this, UserListActivity.class));
             }
         });
         task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TaskActivity.class));
+                startActivity(new Intent(MainActivity.this, TaskActivity.class));
 
             }
         });
         videoAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this,VideoAddActivity.class));
+                startActivity(new Intent(MainActivity.this, VideoAddActivity.class));
 
             }
         });
         categoryAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this,CategoryAddActivity.class));
-
+                startActivity(new Intent(MainActivity.this, CategoryAddActivity.class));
 
 
             }
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         slideradd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,SliderActivity.class));
+                startActivity(new Intent(MainActivity.this, SliderActivity.class));
             }
         });
         adsSetting.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +102,15 @@ public class MainActivity extends AppCompatActivity {
         notisAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,NotisActivity.class));
+                startActivity(new Intent(MainActivity.this, NotisActivity.class));
+            }
+        });
+
+
+        findViewById(R.id.socialLink).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SocialLinkActivity.class));
             }
         });
     }

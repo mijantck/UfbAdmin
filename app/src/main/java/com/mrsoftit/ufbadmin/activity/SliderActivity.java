@@ -68,8 +68,7 @@ public class SliderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
             }
         });
@@ -108,7 +107,7 @@ public class SliderActivity extends AppCompatActivity {
                                     Uri downloadUrl = uri;
                                     progressDialog.show();
 
-                                    SliderModle sliderModle = new SliderModle(null,downloadUrl+"",name,videoUrl1);
+                                    SliderModle sliderModle = new SliderModle(null,videoUrl1 ,name,downloadUrl+"");
                                     db.collection("Slider")
                                             .add(sliderModle)
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
