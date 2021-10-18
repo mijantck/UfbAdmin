@@ -3,22 +3,17 @@ package com.mrsoftit.ufbadmin.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dpizarro.uipicker.library.picker.PickerUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,16 +40,19 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 
-public class VideoAddActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class AddYouTubeChannalActivity extends AppCompatActivity {
 
 
     TextInputEditText youtube_add_edite_text;
-
+    TextInputEditText welcomeCoin;
+    TextInputEditText textFoeUser;
     TextView youtube_link_add_text;
 
     String videoImageURL;
@@ -65,38 +63,24 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
     String channelName;
     String channelID;
     String details;
-
-    List<String> spineerData = new ArrayList<>();
-
-
     CircleImageView channel_logo;
     TextView channel_namae;
     TextView channel_id;
     TextView addVideoButton;
 
     int currentPosition = -1;
-    List<String> options;
-
     String seleceVideoType = "views";
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference youtubeInfoAdd;
 
-    String myString = "Select Category";
-    String myStringnewa = "news";
-    String myStringfun = "fun";
-    String myStringsong = "song";
-    String myStringmore = "more";
-
     LinearLayout videoInfoLayout;
-     String videoCategory;
-
+    String videoCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_add);
-
+        setContentView(R.layout.activity_add_you_tube_channal);
         youtube_add_edite_text = findViewById(R.id.videoUrl);
         youtube_link_add_text = findViewById(R.id.submitButton);
         Spinner spin = (Spinner) findViewById(R.id.spinner);
@@ -105,32 +89,8 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
         channel_id = findViewById(R.id.channel_id);
         videoInfoLayout = findViewById(R.id.videoInfoLayout);
         addVideoButton = findViewById(R.id.addVideoButton);
-
-
-        spineerData.add(myString);
-        spineerData.add(myStringnewa);
-        spineerData.add(myStringfun);
-        spineerData.add(myStringsong);
-        spineerData.add(myStringmore);
-
-        spin.setOnItemSelectedListener(this);
-        db.collection("category")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String videoId = document.get("catName").toString();
-                          //  spineerData.add(videoId);
-                        }
-                    }
-                });
-        //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,spineerData);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
-
+        welcomeCoin = findViewById(R.id.welcomeCoin);
+        textFoeUser = findViewById(R.id.textFoeUser);
 
         youtube_link_add_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +98,7 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
                 String url = youtube_add_edite_text.getText().toString();
 
                 if (url.isEmpty()){
-                    Toast.makeText(VideoAddActivity.this, "Enter Url", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddYouTubeChannalActivity.this, "Enter Url", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 videoImageNameId videoImageNameId = new videoImageNameId(url);
@@ -152,7 +112,7 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
                     }else {
                         String[] parts = fulUrl.split("#");
                         if (parts.length  <4){
-                            Toast.makeText(VideoAddActivity.this, "Try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddYouTubeChannalActivity.this, "Try again", Toast.LENGTH_SHORT).show();
                             Log.d("sdf", "onClick: ");
                             return;
                         }else {
@@ -164,9 +124,9 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
                             Log.d("skjflksdjfkjsd", "onClick: "+channelID);
                         }
 
-                        Toast.makeText(VideoAddActivity.this, "out", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddYouTubeChannalActivity.this, "out", Toast.LENGTH_SHORT).show();
 
-                        ChannelIconName channelIconName = new ChannelIconName(channelID);
+                       ChannelIconName channelIconName = new ChannelIconName(channelID);
                         String currentId =  channelIconName.execute().get();
 
                         String[] channelNameIcon = currentId.split("#");
@@ -183,27 +143,9 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
                         Picasso.get()
                                 .load(channelImageUrl)
                                 .into(channel_logo);
-
                         channel_namae.setText(channelName);
                         channel_id.setText(channelID);
-
                     }
-
-                    YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view11);
-                    getLifecycle().addObserver(youTubePlayerView);
-                    YouTubePlayerTracker tracker = new YouTubePlayerTracker();
-
-                    youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-                        @Override
-                        public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                            String videoId = videoID;
-                            youTubePlayer.loadVideo(videoId, 0);
-                            youTubePlayer.pause();
-                            youTubePlayer.addListener(tracker);
-                        }
-                    });
-
-                    youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> youTubePlayer.cueVideo(videoID,0));
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();
@@ -214,58 +156,42 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-
-
         addVideoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = youtube_add_edite_text.getText().toString();
+                String welcomeCoin1 = welcomeCoin.getText().toString();
+                String textFoeUser1 = textFoeUser.getText().toString();
 
                 if (url.isEmpty()){
-                    Toast.makeText(VideoAddActivity.this, "Enter Url", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddYouTubeChannalActivity.this, "Enter Url", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                YoutubeSetData youtubeSetData = new YoutubeSetData(null,channelName,channelImageUrl,videoNameID,url,videoImageURL,videoID,videoCategory,details);
+                if (welcomeCoin1.isEmpty()){
+                    Toast.makeText(AddYouTubeChannalActivity.this, "Add coin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (textFoeUser1.isEmpty()){
+                    Toast.makeText(AddYouTubeChannalActivity.this, "Welcome text", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                db.collection("allVideos")
-                        .add(youtubeSetData)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                int coin = Integer.parseInt(welcomeCoin1);
+                WelcomeLink welcomeLink = new WelcomeLink(url,channelName,channelImageUrl,channelID,textFoeUser1,coin);
+                db.collection("WelcomeLink").document("LKHSLHJHDKSJH")
+                        .set(welcomeLink)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                String id  = documentReference.getId();
-                                db.collection("allVideos")
-                                        .document(id).update("id",id)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-
-                                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                            }
-                                        });
-
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding document", e);
+                            public void onComplete(@NonNull Task<Void> task) {
+                                youtube_add_edite_text.setText("");
+                                welcomeCoin.setText("");
+                                textFoeUser.setText("");
                             }
                         });
+
             }
         });
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        videoCategory = spineerData.get(position);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     private class videoImageNameId extends AsyncTask<Void, String, String> {
@@ -374,5 +300,4 @@ public class VideoAddActivity extends AppCompatActivity implements AdapterView.O
             }
         }
     }
-
 }

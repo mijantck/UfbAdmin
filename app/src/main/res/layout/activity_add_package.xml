@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AddPackageActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/purple_500">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Add package"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:id="@+id/selectImage"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_baseline_image" />
+
+                <Button
+                    android:text="Image Gallery"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/selectImage"
+                    android:id="@+id/galleryID"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignStart="@+id/selectImage"
+                    android:layout_alignEnd="@+id/selectImage"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/VipName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Vip Name"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="150" />
+
+                <EditText
+                    android:id="@+id/DailyTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Daily Task"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="150" />
+
+                <EditText
+                    android:id="@+id/DailyIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Daily Income"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="150" />
+
+                <EditText
+                    android:id="@+id/USDTAmout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="USDT Amout"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="150" />
+
+                <EditText
+                    android:id="@+id/USDTType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="USDT Type"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="150" />
+
+                <EditText
+                    android:id="@+id/WalletAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Wallet Address"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="150" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/submitId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Submit" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

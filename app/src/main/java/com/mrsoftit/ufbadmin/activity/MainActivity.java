@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         categoryAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CategoryAddActivity.class));
+                startActivity(new Intent(MainActivity.this, AddYouTubeChannalActivity.class));
 
 
             }
@@ -111,6 +111,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SocialLinkActivity.class));
+            }
+        });
+
+
+        findViewById(R.id.pack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AddPackageActivity.class));
             }
         });
     }
