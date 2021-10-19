@@ -8,12 +8,15 @@ public class TaskModle {
     double coin;
     String taskType;
     long date;
+    String vip;
+    String category;
+
 
 
     public TaskModle() {
     }
 
-    public TaskModle(String id, String name, String url, long time, double coin, String taskType, long date) {
+    public TaskModle(String id, String name, String url, long time, double coin, String taskType, long date, String vip, String category) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -21,6 +24,8 @@ public class TaskModle {
         this.coin = coin;
         this.taskType = taskType;
         this.date = date;
+        this.vip = vip;
+        this.category = category;
     }
 
     public String getId() {
@@ -77,5 +82,21 @@ public class TaskModle {
 
     public void setDate(long date) {
         this.date = date;
+    }
+
+    public String getVip() {
+        return vip;
+    }
+
+    public void setVip(String vip) {
+        this.vip = vip;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
