@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout completPyamet;
     LinearLayout promoton;
     LinearLayout notisAdd;
+    LinearLayout PackageRequeste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,16 @@ public class MainActivity extends AppCompatActivity {
         completPyamet = findViewById(R.id.completPyamet);
         promoton = findViewById(R.id.promoton);
         notisAdd = findViewById(R.id.notisAdd);
+        PackageRequeste = findViewById(R.id.PackageRequeste);
 
 
+
+        PackageRequeste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, VipPurchechReActivity.class));
+            }
+        });
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,17 +89,21 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "adsSetting", Toast.LENGTH_SHORT).show();
             }
         });
+
         pymentRequst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "pymentRequst", Toast.LENGTH_SHORT).show();
+
+                startActivity(new Intent(MainActivity.this,PymentRequstActivity.class));
+
             }
         });
 
         completPyamet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "completPyamet", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,PymentCompletActivity.class));
+
             }
         });
         promoton.setOnClickListener(new View.OnClickListener() {

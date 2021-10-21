@@ -2,30 +2,18 @@ package com.mrsoftit.ufbadmin.modle;
 
 public class UserModle {
     String userName;
-    String userEmail;
+    String userPhone;
     String userImage;
     String referCode;
     String uId;
-    int coin;
-    int rCoin;
-    int lifeCoin;
+    double coin;
     String active;
+    String accountType;
 
     public UserModle() {
 
     }
 
-    public UserModle(String userName, String userEmail, String userImage, String referCode, String uId, int coin, int rCoin, int lifeCoin, String active) {
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userImage = userImage;
-        this.referCode = referCode;
-        this.uId = uId;
-        this.coin = coin;
-        this.rCoin = rCoin;
-        this.lifeCoin = lifeCoin;
-        this.active = active;
-    }
 
     public String getUserName() {
         return userName;
@@ -35,12 +23,12 @@ public class UserModle {
         this.userName = userName;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     public String getUserImage() {
@@ -67,28 +55,12 @@ public class UserModle {
         this.uId = uId;
     }
 
-    public int getCoin() {
+    public double getCoin() {
         return coin;
     }
 
-    public void setCoin(int coin) {
+    public void setCoin(double coin) {
         this.coin = coin;
-    }
-
-    public int getrCoin() {
-        return rCoin;
-    }
-
-    public void setrCoin(int rCoin) {
-        this.rCoin = rCoin;
-    }
-
-    public int getLifeCoin() {
-        return lifeCoin;
-    }
-
-    public void setLifeCoin(int lifeCoin) {
-        this.lifeCoin = lifeCoin;
     }
 
     public String getActive() {
@@ -97,5 +69,13 @@ public class UserModle {
 
     public void setActive(String active) {
         this.active = active;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }

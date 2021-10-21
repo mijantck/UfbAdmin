@@ -51,9 +51,9 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
         UserModle userModle = categoryModles.get(position);
 
         holder.userName.setText(userModle.getUserName());
-        holder.userEmail.setText(userModle.getUserEmail());
+        holder.userEmail.setText(userModle.getUserPhone());
         holder.userCoin.setText(userModle.getCoin()+"");
-        holder.active.setText(userModle.getActive());
+        holder.active.setText(userModle.getAccountType());
 
         Glide.with(context)
                 .load(userModle.getUserImage())
@@ -63,7 +63,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog((Activity) v.getContext(),userModle);
+              //  showDialog((Activity) v.getContext(),userModle);
             }
         });
     }
@@ -116,7 +116,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                 .into(userImage);
 
         nameD.setText(userModle.getUserName());
-        emailD.setText(userModle.getUserEmail());
+        emailD.setText(userModle.getUserPhone());
         coinlD.setText(userModle.getCoin()+"");
         activelD.setText(userModle.getActive());
 

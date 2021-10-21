@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,11 +53,9 @@ import java.util.UUID;
 
 public class AddPackageActivity extends AppCompatActivity {
     private static final int EXTERNAL_PERMISSION_CODE = 1234;
-    FirebaseUser user;
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();;
     private ImageView selectImage;
-    private Uri filePath;
+    private Uri filePath = null;
     private final int PICK_IMAGE_REQUEST = 22;
 
     FirebaseStorage storage;
@@ -64,38 +63,76 @@ public class AddPackageActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     MaterialButton submitId;
+    MaterialButton VipList;
 
     private static final int PICK_FROM_CAMERA = 1;
     private static final int PICK_FROM_GALLARY = 2;
     Uri outPutfileUri;
 
     EditText VipName, DailyTask, DailyIncome, USDTAmout, USDTType, WalletAddress;
+    String id = null;
+    String packs;
+    String dailyTask;
+    String dailyIncome;
+    String UsdtAmount;
+    String USDTTypes;
+    String USDTWallets;
+    String vipImage;
 
-
+    ProgressDialog  progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_package);
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading...");
-        mAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        db = FirebaseFirestore.getInstance();
-
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
-        selectImage = findViewById(R.id.selectImage);
-        submitId = findViewById(R.id.submitId);
-
         WalletAddress = findViewById(R.id.WalletAddress);
         VipName = findViewById(R.id.VipName);
         DailyTask = findViewById(R.id.DailyTask);
         DailyIncome = findViewById(R.id.DailyIncome);
         USDTAmout = findViewById(R.id.USDTAmout);
         USDTType = findViewById(R.id.USDTType);
+        selectImage = findViewById(R.id.selectImage);
+        submitId = findViewById(R.id.submitId);
+        VipList = findViewById(R.id.VipList);
 
-        // on pressing btnSelect SelectImage() is called
+        Intent intent = getIntent();
 
+        if (intent != null) {
+            packs = intent.getStringExtra("pack");
+            dailyTask = intent.getStringExtra("dailyTask");
+            dailyIncome = intent.getStringExtra("dailyIncome");
+            UsdtAmount = intent.getStringExtra("UsdtAmount");
+            USDTTypes = intent.getStringExtra("USDTType");
+            USDTWallets = intent.getStringExtra("USDTWallet");
+            vipImage = intent.getStringExtra("vipImage");
+            id = intent.getStringExtra("id");
+
+            WalletAddress.setText(USDTWallets);
+            VipName.setText(packs);
+            DailyTask.setText(dailyTask);
+            DailyIncome.setText(dailyIncome);
+            USDTAmout.setText(UsdtAmount);
+            USDTType.setText(USDTTypes);
+
+            Glide.with(getApplicationContext())
+                    .load(vipImage)
+                    .fitCenter()
+                    .into(selectImage);
+
+        }
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+        VipList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(AddPackageActivity.this, ViewAllVipActivity.class));
+
+
+            }
+        });
         Button galleryButton = (Button) findViewById(R.id.galleryID);
         galleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,11 +153,7 @@ public class AddPackageActivity extends AppCompatActivity {
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Log.d("dfdfsdfsd", "onClick: ");
-
                 if (checkPermission()) {
-
                     //start image picker
                     Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     // Start the Intent
@@ -131,7 +164,6 @@ public class AddPackageActivity extends AppCompatActivity {
                 }
             }
         });
-
 
 
         submitId.setOnClickListener(new View.OnClickListener() {
@@ -164,11 +196,22 @@ public class AddPackageActivity extends AppCompatActivity {
                     Toast.makeText(AddPackageActivity.this, "Enter Wallet Address", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (filePath != null) {
-                    uploadImage(VipName1, DailyTask1, DailyIncome1, USDTAmout1, USDTType1, WalletAddress1);
+                progress = new ProgressDialog(AddPackageActivity.this);
+                progress.setMessage("Loading...");
+                progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progress.show();
+
+                if (id != null && filePath == null ) {
+                    uploadData(VipName.getText().toString(), DailyTask.getText().toString(), DailyIncome.getText().toString(), USDTAmout.getText().toString(), USDTType.getText().toString(), WalletAddress.getText().toString(), vipImage);
+
                 } else {
-                    Toast.makeText(AddPackageActivity.this, "Input Image", Toast.LENGTH_SHORT).show();
+                    if (filePath != null) {
+                        uploadImage(VipName1, DailyTask1, DailyIncome1, USDTAmout1, USDTType1, WalletAddress1);
+                    } else {
+                        Toast.makeText(AddPackageActivity.this, "Input Image", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
             }
         });
         selectImage.setOnClickListener(new View.OnClickListener() {
@@ -187,13 +230,6 @@ public class AddPackageActivity extends AppCompatActivity {
         });
     }
 
-    private void SelectImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image from here..."), PICK_IMAGE_REQUEST);
-    }
-
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -210,9 +246,7 @@ public class AddPackageActivity extends AppCompatActivity {
 
             case PICK_FROM_GALLARY:
                 if (resultCode == Activity.RESULT_OK) {
-                    //pick image from gallery
                     Uri selectedImage = data.getData();
-
                     outPutfileUri = selectedImage;
                     filePath = data.getData();
                     selectImage.setImageURI(filePath);
@@ -226,20 +260,6 @@ public class AddPackageActivity extends AppCompatActivity {
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
-    }
-
-    public String getRealPathFromURI(Uri uri) {
-        String path = "";
-        if (getContentResolver() != null) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            if (cursor != null) {
-                cursor.moveToFirst();
-                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                path = cursor.getString(idx);
-                cursor.close();
-            }
-        }
-        return path;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -267,34 +287,40 @@ public class AddPackageActivity extends AppCompatActivity {
 
 
     public void uploadData(String VipName, String DailyTask, String DailyIncome, String USDTAmout, String USDTType, String WalletAddress, String Imageurl) {
+        PackegModel packegModel = new PackegModel(id, USDTAmout, USDTType, WalletAddress, Imageurl, DailyTask, DailyIncome, VipName);
+        if (id != null) {
+            db.collection("VIP").document(id)
+                    .set(packegModel)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-        PackegModel packegModel = new PackegModel(null, USDTAmout, USDTType, WalletAddress, Imageurl, DailyTask, DailyIncome, VipName);
-        db.collection("VIP")
-                .add(packegModel)
-                .addOnCompleteListener(task -> {
-                    String idd = task.getResult().getId();
+                            progress.dismiss();
+                            startActivity(new Intent(AddPackageActivity.this,ViewAllVipActivity.class));
+                            finish();
+                        }
+                    });
+        } else {
+            db.collection("VIP")
+                    .add(packegModel)
+                    .addOnCompleteListener(task -> {
+                        String idd = task.getResult().getId();
 
-                    db.collection("VIP")
-                            .document(idd)
-                            .update("id", idd)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    new AlertDialog.Builder(AddPackageActivity.this)
-                                            .setTitle("Thank you")
-                                            .setCancelable(true)
-                                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    // Continue with delete operation
+                        db.collection("VIP")
+                                .document(idd)
+                                .update("id", idd)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progress.dismiss();
+                                        startActivity(new Intent(AddPackageActivity.this,ViewAllVipActivity.class));
+                                        finish();
 
-                                                    AddPackageActivity.this.recreate();
+                                    }
+                                });
+                    });
+        }
 
-                                                }
-                                            }).show();
-
-                                }
-                            });
-                });
     }
 
 

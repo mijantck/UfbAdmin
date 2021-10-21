@@ -50,9 +50,6 @@ public class UserListActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             UserModle qst = document.toObject(UserModle.class);
                             userModles.add(qst);
-
-                            Log.d("djhfkjsdh", "onComplete: "+qst.getUserEmail());
-
                         }
 
                         usersListAdapter = new UsersListAdapter(UserListActivity.this,userModles);
