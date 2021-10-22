@@ -30,7 +30,6 @@ public class VipAdapter extends RecyclerView.Adapter<VipAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView vipImage;
-
         TextView vipName;
         TextView dailyTask;
         TextView dailyIncome;
@@ -82,6 +81,7 @@ public class VipAdapter extends RecyclerView.Adapter<VipAdapter.ViewHolder> {
                 intent.putExtra("USDTType",vipModel.getUsdtType());
                 intent.putExtra("USDTWallet",vipModel.getWalletAddress());
                 intent.putExtra("vipImage",vipModel.getImageUrl());
+                intent.putExtra("taskIncomes",vipModel.getTaskIcome());
                 intent.putExtra("id",vipModel.getId());
                 Toast.makeText(v.getContext(), ""+vipModel.getId(), Toast.LENGTH_SHORT).show();
                 v.getContext().startActivity(intent);

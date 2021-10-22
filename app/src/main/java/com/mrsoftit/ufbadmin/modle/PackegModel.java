@@ -9,11 +9,12 @@ public class PackegModel {
     String dailyTask;
     String dailyIncome;
     String VipName;
+    String taskIcome;
 
     public PackegModel() {
     }
 
-    public PackegModel(String id, String usdtAmount, String usdtType, String walletAddress, String imageUrl, String dailyTask, String dailyIncome, String vipName) {
+    public PackegModel(String id, String usdtAmount, String usdtType, String walletAddress, String imageUrl, String dailyTask, String dailyIncome, String vipName, String taskIcome) {
         this.id = id;
         this.usdtAmount = usdtAmount;
         this.usdtType = usdtType;
@@ -22,6 +23,7 @@ public class PackegModel {
         this.dailyTask = dailyTask;
         this.dailyIncome = dailyIncome;
         VipName = vipName;
+        this.taskIcome = taskIcome;
     }
 
     public String getId() {
@@ -86,5 +88,13 @@ public class PackegModel {
 
     public void setVipName(String vipName) {
         VipName = vipName;
+    }
+
+    public String getTaskIcome() {
+        return taskIcome;
+    }
+
+    public void setTaskIcome(String taskIcome) {
+        this.taskIcome = taskIcome;
     }
 }

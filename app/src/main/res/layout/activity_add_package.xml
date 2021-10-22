@@ -76,6 +76,15 @@
                     android:maxLength="150" />
 
                 <EditText
+                    android:id="@+id/taskIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Task income"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="150" />
+
+                <EditText
                     android:id="@+id/DailyTask"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

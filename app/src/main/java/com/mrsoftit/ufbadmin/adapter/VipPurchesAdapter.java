@@ -16,6 +16,7 @@ import java.util.List;
 
 public class VipPurchesAdapter extends RecyclerView.Adapter<VipPurchesAdapter.ExampleViewHolder> {
     private List<VipPurchechModel> mExampleList;
+
     private OnItemClickListener mListener;
     public interface OnItemClickListener {
         void onItemClick(int position);

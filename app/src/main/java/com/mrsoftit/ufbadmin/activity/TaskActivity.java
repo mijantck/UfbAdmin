@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,19 +53,18 @@ public class TaskActivity extends AppCompatActivity {
     Spinner spinnerVip;
     Spinner spinnerCategory;
     Spinner spinnerOptions;
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String seletVip;
-
     String seletCategory;
-
     String seletOptions;
-
     long  timeD;
-
     private FirebaseAuth mAuth;
     FirebaseUser user;
     List<PackegModel> vipModels = new ArrayList<>();
+
+
+    LinearLayout allTaskView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,16 @@ public class TaskActivity extends AppCompatActivity {
         tasktTime = findViewById(R.id.tasktTime);
         taskCoin = findViewById(R.id.taskCoin);
         submitButton = findViewById(R.id.submitButton);
+        allTaskView = findViewById(R.id.allTaskView);
+
+
+        allTaskView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TaskActivity.this,AllTaskViewActivity.class));
+
+            }
+        });
 
 
         options.add("Select task");
@@ -90,7 +102,6 @@ public class TaskActivity extends AppCompatActivity {
         category.add("FACEBOOK");
         category.add("TIKTOK");
         category.add("INSTAGRAM");
-
         vip.add("Select VIP");
 
         db.collection("VIP")
@@ -160,17 +171,9 @@ public class TaskActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (seletCategory.equals("")|| seletCategory.equals("Select category")){
-
+                if (seletCategory.equals("") || seletCategory.equals("Select category")){
                     Toast.makeText(TaskActivity.this, "Select category", Toast.LENGTH_SHORT).show();
-                }
-                if (seletOptions.equals("")|| seletOptions.equals("Select task")){
-
-                    Toast.makeText(TaskActivity.this, "Select task", Toast.LENGTH_SHORT).show();
-                }
-                if (seletVip.equals("")|| seletVip.equals("Select VIP")){
-
-                    Toast.makeText(TaskActivity.this, "Select VIP", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 String urlS =videoUrl.getText().toString();
                 String taskN = taskName.getText().toString();
@@ -178,19 +181,29 @@ public class TaskActivity extends AppCompatActivity {
                 String taskCo =taskCoin.getText().toString();
                 String taskType =seletOptions;
 
-                if (urlS == null || taskN == null || taskTime == null || taskCo == null || taskType == null){
+                if (urlS == null){
                     Toast.makeText(TaskActivity.this, "FillUp all", Toast.LENGTH_SHORT).show();
-
+                }
+                if (taskN == null){
+                    Toast.makeText(TaskActivity.this, "FillUp all", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                timeD = TimeUnit.MINUTES.toMillis(Long.parseLong(taskTime));
+                if (taskCo == null){
+                    Toast.makeText(TaskActivity.this, "FillUp all", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                ProgressDialog progress = new ProgressDialog(TaskActivity.this);
+                progress.setMessage("Loading...");
+                progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progress.show();
+
+               // timeD = TimeUnit.MINUTES.toMillis(Long.parseLong(taskTime));
                 double co = Double.parseDouble(taskCo);
                 Calendar date = Calendar.getInstance();
                 long millisecondsDate = date.getTimeInMillis();
 
-
-                TaskModle taskModle = new TaskModle(null,taskN,urlS,timeD,co,taskType,millisecondsDate,seletVip,seletCategory);
-
+                TaskModle taskModle = new TaskModle(null,taskN,urlS,10000,co,"TASK",millisecondsDate,"VIP",seletCategory);
                 db.collection("AllTask")
                         .add(taskModle)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -202,6 +215,9 @@ public class TaskActivity extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+                                                progress.dismiss();
+                                                startActivity(new Intent(TaskActivity.this,AllTaskViewActivity.class));
+
                                                 Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                                             }
                                         });

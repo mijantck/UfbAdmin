@@ -96,6 +96,7 @@ public class CompletVipRequFragment extends Fragment {
         mAdapter = new VipPurchesAdapter(vipPurchechModels);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
         mAdapter.setOnItemClickListener(new VipPurchesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -104,9 +105,6 @@ public class CompletVipRequFragment extends Fragment {
             @Override
             public void onPendingClick(int position) {
 
-
-
-                Toast.makeText(view.getContext(), "Toast", Toast.LENGTH_SHORT).show();
             }
         });
     }

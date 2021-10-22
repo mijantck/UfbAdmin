@@ -69,7 +69,7 @@ public class AddPackageActivity extends AppCompatActivity {
     private static final int PICK_FROM_GALLARY = 2;
     Uri outPutfileUri;
 
-    EditText VipName, DailyTask, DailyIncome, USDTAmout, USDTType, WalletAddress;
+    EditText VipName, DailyTask, DailyIncome, USDTAmout, USDTType, WalletAddress,taskIncome;
     String id = null;
     String packs;
     String dailyTask;
@@ -78,6 +78,7 @@ public class AddPackageActivity extends AppCompatActivity {
     String USDTTypes;
     String USDTWallets;
     String vipImage;
+    String taskIncomes;
 
     ProgressDialog  progress;
     @Override
@@ -95,6 +96,7 @@ public class AddPackageActivity extends AppCompatActivity {
         selectImage = findViewById(R.id.selectImage);
         submitId = findViewById(R.id.submitId);
         VipList = findViewById(R.id.VipList);
+        taskIncome = findViewById(R.id.taskIncome);
 
         Intent intent = getIntent();
 
@@ -106,6 +108,7 @@ public class AddPackageActivity extends AppCompatActivity {
             USDTTypes = intent.getStringExtra("USDTType");
             USDTWallets = intent.getStringExtra("USDTWallet");
             vipImage = intent.getStringExtra("vipImage");
+            taskIncomes = intent.getStringExtra("taskIncomes");
             id = intent.getStringExtra("id");
 
             WalletAddress.setText(USDTWallets);
@@ -114,6 +117,7 @@ public class AddPackageActivity extends AppCompatActivity {
             DailyIncome.setText(dailyIncome);
             USDTAmout.setText(UsdtAmount);
             USDTType.setText(USDTTypes);
+            taskIncome.setText(taskIncomes);
 
             Glide.with(getApplicationContext())
                     .load(vipImage)
@@ -175,6 +179,7 @@ public class AddPackageActivity extends AppCompatActivity {
                 String USDTAmout1 = USDTAmout.getText().toString();
                 String USDTType1 = USDTType.getText().toString();
                 String WalletAddress1 = WalletAddress.getText().toString();
+                String taskIncome1 = taskIncome.getText().toString();
 
                 if (VipName1.equals("")) {
                     Toast.makeText(AddPackageActivity.this, "Enter Name", Toast.LENGTH_SHORT).show();
@@ -196,17 +201,21 @@ public class AddPackageActivity extends AppCompatActivity {
                     Toast.makeText(AddPackageActivity.this, "Enter Wallet Address", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (taskIncome1.equals("")) {
+                    Toast.makeText(AddPackageActivity.this, "Enter Task income", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 progress = new ProgressDialog(AddPackageActivity.this);
                 progress.setMessage("Loading...");
                 progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progress.show();
 
                 if (id != null && filePath == null ) {
-                    uploadData(VipName.getText().toString(), DailyTask.getText().toString(), DailyIncome.getText().toString(), USDTAmout.getText().toString(), USDTType.getText().toString(), WalletAddress.getText().toString(), vipImage);
+                    uploadData(VipName.getText().toString(), DailyTask.getText().toString(), DailyIncome.getText().toString(), USDTAmout.getText().toString(), USDTType.getText().toString(), WalletAddress.getText().toString(), vipImage,taskIncome1);
 
                 } else {
                     if (filePath != null) {
-                        uploadImage(VipName1, DailyTask1, DailyIncome1, USDTAmout1, USDTType1, WalletAddress1);
+                        uploadImage(VipName1, DailyTask1, DailyIncome1, USDTAmout1, USDTType1, WalletAddress1,taskIncome1);
                     } else {
                         Toast.makeText(AddPackageActivity.this, "Input Image", Toast.LENGTH_SHORT).show();
                     }
@@ -286,8 +295,8 @@ public class AddPackageActivity extends AppCompatActivity {
     }
 
 
-    public void uploadData(String VipName, String DailyTask, String DailyIncome, String USDTAmout, String USDTType, String WalletAddress, String Imageurl) {
-        PackegModel packegModel = new PackegModel(id, USDTAmout, USDTType, WalletAddress, Imageurl, DailyTask, DailyIncome, VipName);
+    public void uploadData(String VipName, String DailyTask, String DailyIncome, String USDTAmout, String USDTType, String WalletAddress, String Imageurl,String taskIncome1) {
+        PackegModel packegModel = new PackegModel(id, USDTAmout, USDTType, WalletAddress, Imageurl, DailyTask, DailyIncome, VipName,taskIncome1);
         if (id != null) {
             db.collection("VIP").document(id)
                     .set(packegModel)
@@ -324,7 +333,7 @@ public class AddPackageActivity extends AppCompatActivity {
     }
 
 
-    private void uploadImage(String VipName, String DailyTask, String DailyIncome, String USDTAmout, String USDTType, String WalletAddress) {
+    private void uploadImage(String VipName, String DailyTask, String DailyIncome, String USDTAmout, String USDTType, String WalletAddress,String taskIncome1) {
         if (outPutfileUri != null) {
             progressDialog.show();
             StorageReference ref = storageReference.child("image/" + UUID.randomUUID().toString());
@@ -336,7 +345,7 @@ public class AddPackageActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri downloadUrl) {
                                     //do something with downloadurl
-                                    uploadData(VipName, DailyTask, DailyIncome, USDTAmout, USDTType, WalletAddress, downloadUrl.toString());
+                                    uploadData(VipName, DailyTask, DailyIncome, USDTAmout, USDTType, WalletAddress, downloadUrl.toString(),taskIncome1);
                                     progressDialog.dismiss();
                                 }
                             });

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UfbAdmin">
-        <activity android:name=".activity.ViewAllVipActivity"></activity>
+        <activity android:name=".activity.AllTaskViewActivity"></activity>
+        <activity android:name=".activity.ViewAllVipActivity" />
         <activity android:name=".activity.PymentCompletActivity" />
         <activity android:name=".activity.PymentRequstActivity" />
         <activity android:name=".activity.VipPurchechReActivity" />

@@ -26,9 +26,7 @@ public class UserListActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     List<UserModle> userModles = new ArrayList<>();
-
     UsersListAdapter usersListAdapter;
-
     RecyclerView userListRe;
 
     NordanLoadingDialog nordanLoadingDialog ;
