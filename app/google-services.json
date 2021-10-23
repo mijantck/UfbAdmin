@@ -1,41 +1,70 @@
 {
   "project_info": {
-    "project_number": "529065903137",
-    "project_id": "ufbsever",
-    "storage_bucket": "ufbsever.appspot.com"
+    "project_number": "602154121320",
+    "project_id": "ealbank-6ce45",
+    "storage_bucket": "ealbank-6ce45.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:529065903137:android:2fb4efa550a0d5c7e44f60",
+        "mobilesdk_app_id": "1:602154121320:android:81c0da6417a901023ca3dd",
         "android_client_info": {
-          "package_name": "com.mrsoftit.ufbadmin"
+          "package_name": "com.ealmrtc.bank"
         }
       },
       "oauth_client": [
         {
-          "client_id": "529065903137-8mv9gkgilgnggorvetihrmukrfl1378r.apps.googleusercontent.com",
+          "client_id": "602154121320-av2tdip1crue0lkdfpesqe6kcv2pgnt0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mrsoftit.ufbadmin",
+            "package_name": "com.ealmrtc.bank",
             "certificate_hash": "8faad8ad95bc17fb62e5e9ec8162f9b83e22bffe"
           }
         },
         {
-          "client_id": "529065903137-gclu3ufu0kpi2gvug04tuvf5fqqitv2t.apps.googleusercontent.com",
+          "client_id": "602154121320-nkis30umbnut4a9mf4t5gvcrph8n1sgd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJr55r3DLqf8lSL-j1KUbEyS0qhTvjup0"
+          "current_key": "AIzaSyD7CIO8d4zsLUlBgwgITvhVTGKMEGlj1ic"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "529065903137-gclu3ufu0kpi2gvug04tuvf5fqqitv2t.apps.googleusercontent.com",
+              "client_id": "602154121320-nkis30umbnut4a9mf4t5gvcrph8n1sgd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602154121320:android:903d4707871bf05d3ca3dd",
+        "android_client_info": {
+          "package_name": "com.ealmrtc.bankadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602154121320-nkis30umbnut4a9mf4t5gvcrph8n1sgd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7CIO8d4zsLUlBgwgITvhVTGKMEGlj1ic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602154121320-nkis30umbnut4a9mf4t5gvcrph8n1sgd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mrsoftit.ufbadmin">
+    package="com.ealmrtc.bankadmin">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -11,22 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UfbAdmin">
-        <activity android:name=".activity.AllTaskViewActivity"></activity>
-        <activity android:name=".activity.ViewAllVipActivity" />
-        <activity android:name=".activity.PymentCompletActivity" />
-        <activity android:name=".activity.PymentRequstActivity" />
-        <activity android:name=".activity.VipPurchechReActivity" />
-        <activity android:name=".activity.AddPackageActivity" />
-        <activity android:name=".activity.WebViewActivity" />
-        <activity android:name=".activity.AddYouTubeChannalActivity" />
-        <activity android:name=".activity.SocialLinkActivity" />
-        <activity android:name=".activity.NotisActivity" />
-        <activity android:name=".activity.SliderActivity" />
-        <activity android:name=".activity.CategoryAddActivity" />
-        <activity android:name=".activity.VideoAddActivity" />
-        <activity android:name=".activity.TaskActivity" />
-        <activity android:name=".activity.UserListActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.ealmrtc.bankadmin.activity.AllTaskViewActivity"></activity>
+        <activity android:name="com.ealmrtc.bankadmin.activity.ViewAllVipActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.PymentCompletActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.PymentRequstActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.VipPurchechReActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.AddPackageActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.WebViewActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.AddYouTubeChannalActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.SocialLinkActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.NotisActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.SliderActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.CategoryAddActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.VideoAddActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.TaskActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.UserListActivity" />
+        <activity android:name="com.ealmrtc.bankadmin.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

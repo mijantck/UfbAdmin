@@ -113,6 +113,19 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
+
+            <TextView
+                android:padding="5dp"
+                android:background="@drawable/bg_stroke_black"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/copyUsdt"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:text="COPY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
 
         <RelativeLayout
